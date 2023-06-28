@@ -17,7 +17,7 @@ let voucher = [
   },
   {
     name: 'gomantap',
-    diskon: 0.1,
+    diskon: 0.2,
     lastest: '6/30/2023',
   },
 ];
@@ -29,15 +29,18 @@ function getVoucher(name, price, date, priceNormal) {
   //validasi jika nama diskon ditemukan dan voucher belum exp
   if (getName && date <= getName.lastest) {
     let priceAfterDiskon = price - price * getName.diskon; //harga setelah dikurangi diskon
-    console.log(priceAfterDiskon);
+    // console.log(
+    //   `harga setelah akumulasi diskon : ${priceAfterDiskon}`
+    // );
     //validasi  diskon tidak boleh lebih dari 50% harga normal || harga setelah diskon tidak boleh kurang dari 50% harga normal
     if (priceAfterDiskon <= 0.5 * priceNormal) {
-      return priceNormal * 0.5;
-    } else return pricAfterDiskon;
+      return `diskon maksimal : ${priceNormal * 0.5}`;
+    } else
+      return `harga setelah akumulasi dikon : ${priceAfterDiskon}`;
   } else {
     console.log('Voucher not found');
-    return price;
+    return `harga setelah diskon sebelumnya : ${price}`;
   }
 }
 
-console.log(getVoucher('gomantap', 2000000, date));
+console.log(getVoucher('gomantap', 2000000, date, 3000000));
